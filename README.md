@@ -1,8 +1,8 @@
-# Setup an iac-master 
+# Setup an iac-genesis 
 
 ## Use the `initial_setup.sh` script to setup a user and pull this repository
 ```
-wget -q -O - https://raw.githubusercontent.com/JacobTheEldest/iac-master/master/initial_setup.sh | bash
+wget -q -O - https://raw.githubusercontent.com/JacobTheEldest/iac-genesis/master/initial_setup.sh | bash
 ```
 
 ## decrypt the necessary files with `decrypt.sh`
@@ -21,11 +21,11 @@ install_ansible.sh
 ansible-galaxy install -r ansible/requirements.yaml
 ```
 
-## Run the ansible playbook to setup iac-master
+## Run the ansible playbook to setup iac-genesis
 Set `restore` to true to restore from the most recent backup
 
 Set `backup` to true to enable backups for this host
 
 ```
-ansible-playbook ansible/iac-master.yml -i ansible/inventory/iac-master -e "restore=true backup=false"
+ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis -e "restore=true backup=false"
 ```
