@@ -1,6 +1,6 @@
 # Setup an iac-master 
 
-## Use the `initial_setup.sh` script to pull this github repository
+## Use the `initial_setup.sh` script to setup a user and pull this repository
 ```
 wget -q -O - https://raw.githubusercontent.com/JacobTheEldest/iac-master/master/initial_setup.sh | bash
 ```
