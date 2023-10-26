@@ -1,5 +1,5 @@
 
-iac_master:
+iac_genesis:
   hosts:
     localhost:
       ansible_connection: local

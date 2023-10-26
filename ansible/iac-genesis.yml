@@ -1,6 +1,6 @@
 ---
 - name: Initial setup
-  hosts: iac_master
+  hosts: iac_genesis
   remote_user: jacob
   collections:
     - jacobsteward.collection
@@ -14,7 +14,7 @@
 
 
 - name: Install packages for iac-master
-  hosts: iac_master
+  hosts: iac_genesis
   gather_facts: yes
   remote_user: jacob
   become: true
@@ -32,7 +32,7 @@
 
 
 - name: Setup backup access
-  hosts: iac_master
+  hosts: iac_genesis
   gather_facts: yes
   remote_user: jacob
   become: true
