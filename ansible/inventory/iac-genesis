@@ -1,0 +1,5 @@
+
+iac_master:
+  hosts:
+    localhost:
+      ansible_connection: local

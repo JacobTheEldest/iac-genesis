@@ -1,0 +1,12 @@
+# ansible-galaxy install -r requirements.yaml
+
+---
+roles:
+  - name: ricsanfre.backup
+
+
+collections:
+  - name: community.docker
+  - name: git@github.com:JacobTheEldest/ansible-collection-jacobsteward.git
+    type: git
+...

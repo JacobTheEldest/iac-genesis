@@ -1,0 +1,80 @@
+---
+- name: Initial setup
+  hosts: iac_master
+  remote_user: jacob
+  collections:
+    - jacobsteward.collection
+  tasks:
+    - name: import roles from my collection
+      include_role:
+        name: "{{ item }}"
+      loop:
+        - common
+        - code_server
+
+
+- name: Install packages for iac-master
+  hosts: iac_master
+  gather_facts: yes
+  remote_user: jacob
+  become: true
+  tasks:
+    - name: Update cache and upgrade packages
+      apt:
+        update_cache: yes 
+        upgrade: yes
+        cache_valid_time: 86400
+    - name: Install useful tools
+      ansible.builtin.package:
+        name:
+          - ansible-lint
+        state: latest
+
+
+- name: Setup backup access
+  hosts: iac_master
+  gather_facts: yes
+  remote_user: jacob
+  become: true
+  roles:
+    - role: ricsanfre.backup
+      restic_repository: "rclone:s3-storj:iac-master-backup"
+      rclone_install: true
+      rclone_configure: true
+      rclone_config_file: |
+        [s3-storj]
+        type = s3
+        provider = Storj
+        access_key_id = {{ storj_access_key_id }}
+        secret_access_key = {{ storj_secret_access_key }}
+        endpoint = https://gateway.storjshare.io
+      restic_password: "{{ restic_password }}"
+      restic_backups_dirs:
+        - path: '/home/jacob/code/'
+          exclude:
+            - pattern: '.terraform/providers'
+            - pattern: '.git/objects'
+      restic_clean_service: true
+      restic_forget_keep_within: 30d
+  
+  tasks:
+    - name: Disable systemd timers for restic
+      when: not backup
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: false
+      loop:
+        - restic-backup.timer
+        - restic-clean.timer
+
+    - name: Restore from backup
+      when: restore
+      become: true
+      command: "/etc/restic/restic-wrapper.sh restore latest --target /"
+      
+
+#### Fix locale issue ####
+# sudo apt install locales -y
+# sudo locale-gen en_US.UTF-8
+# echo "LANG=en_US.UTF-8" | sudo tee /etc/default/locale
