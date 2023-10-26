@@ -29,5 +29,8 @@ Set `restore` to true to restore from the most recent backup
 Set `backup` to true to enable backups for this host
 
 ```
-ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis -e "{restore: true, backup: false}"
+ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis -e \
+    "{restore: true, backup: false}" \
+    -e "@ansible/secrets.yml" \
+    --vault-password-file ansible/vault_password
 ```
