@@ -34,3 +34,8 @@ ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis -e \
     -e "@ansible/secrets.yml" \
     --vault-password-file ansible/vault_password
 ```
+
+## Edit the secrets if necessary
+```
+ansible-vault edit --vault-password-file ansible/vault_password ansible/secrets.yml
+```
