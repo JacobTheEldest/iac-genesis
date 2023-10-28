@@ -12,12 +12,12 @@ wget -q -O - https://raw.githubusercontent.com/JacobTheEldest/iac-genesis/master
 
 ## Place the ssh files with the appropriate script in the `sensitive` directory
 ```
-sensitive/place_ssh_files.sh
+./sensitive/place_ssh_files.sh
 ```
 
 ## Install ansible and install the requirements
 ```
-install_ansible.sh
+./install_ansible.sh
 ansible-galaxy install -r ansible/requirements.yaml
 ```
 
