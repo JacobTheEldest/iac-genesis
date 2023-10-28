@@ -27,3 +27,6 @@ echo "Pulling full repo"
 git clone  https://github.com/JacobTheEldest/iac-genesis /home/$USER/code/iac-genesis
 
 chown -R $USER:$USER /home/$USER/
+
+git config --global user.name "Jacob S. Steward"
+git config --global user.email "jacobtheeldest@gmail.com"
