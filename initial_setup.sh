@@ -30,3 +30,4 @@ chown -R $USER:$USER /home/$USER/
 
 git config --global user.name "Jacob S. Steward"
 git config --global user.email "jacobtheeldest@gmail.com"
+git config --global pull.rebase false
