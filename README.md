@@ -30,9 +30,9 @@ Set `backup` to true to enable backups for this host
 
 ```
 ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis \
-    -e "{restore: true, backup: false}" \
+    --vault-password-file ansible/vault_password \
     -e "@ansible/secrets.yml" \
-    --vault-password-file ansible/vault_password
+    -e "{restore: true, backup: false}"
 ```
 
 ## Edit the secrets if necessary
