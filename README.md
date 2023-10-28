@@ -12,12 +12,12 @@ wget -q -O - https://raw.githubusercontent.com/JacobTheEldest/iac-genesis/master
 
 ## Place the ssh files with the appropriate script in the `sensitive` directory
 ```
-sensitive/place_ssh_files.sh
+./sensitive/place_ssh_files.sh
 ```
 
 ## Install ansible and install the requirements
 ```
-install_ansible.sh
+./install_ansible.sh
 ansible-galaxy install -r ansible/requirements.yaml
 ```
 
@@ -29,8 +29,8 @@ Set `restore` to true to restore from the most recent backup
 Set `backup` to true to enable backups for this host
 
 ```
-ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis -e \
-    "{restore: true, backup: false}" \
+ansible-playbook ansible/iac-genesis.yml -i ansible/inventory/iac-genesis \
+    -e "{restore: true, backup: false}" \
     -e "@ansible/secrets.yml" \
     --vault-password-file ansible/vault_password
 ```
