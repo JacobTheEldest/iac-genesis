@@ -45,10 +45,10 @@
         [s3-storj]
         type = s3
         provider = Storj
-        access_key_id = {{ storj_access_key_id }}
-        secret_access_key = {{ storj_secret_access_key }}
+        access_key_id = {{ iac_genesis_storj_access_key_id }}
+        secret_access_key = {{ iac_genesis_storj_secret_access_key }}
         endpoint = https://gateway.storjshare.io
-      restic_password: "{{ restic_password }}"
+      restic_password: "{{ iac_genesis_restic_password }}"
       restic_backups_dirs:
         - path: '/home/jacob/code/'
           exclude:
